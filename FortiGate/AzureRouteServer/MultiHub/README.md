@@ -12,11 +12,11 @@ In Microsoft Azure, you can deploy an active/passive pair of FortiGate VMs that 
 
 This Azure ARM template will automatically deploy a full working environment containing the the following components.
 
-  - 4 FortiGate firewall's in 2 active/passive deployments
-  - 2 Hub VNETs and 2 Spoke VNETs. Each hub ha a routeserver subnet and 4 subnets required for the FortiGate deployment (external, internal, ha mgmt and ha sync). If using an existing vnet, it must already have these 5 subnets
-	- 2x 3 public IPs. The first public IP is for cluster access to/through the active FortiGate.  The other two PIPs are for Management access. To deploy with public IPs on the FortiGate VMs you can use the 'Azure Portal Wizard - Deploy to Azure' button and select none for the the second and third public IP
-  - User Defined Routes (UDR) for the FortiGate VMs
-  - Azure Route Server and all configuration on the FortiGate to get started
+- 4 FortiGate firewall's in 2 active/passive deployments
+- 2 Hub VNETs and 2 Spoke VNETs. Each hub ha a routeserver subnet and 4 subnets required for the FortiGate deployment (external, internal, ha mgmt and ha sync). If using an existing vnet, it must already have these 5 subnets
+  - 2x 3 public IPs. The first public IP is for cluster access to/through the active FortiGate. The other two PIPs are for Management access. To deploy with public IPs on the FortiGate VMs you can use the 'Azure Portal Wizard - Deploy to Azure' button and select none for the the second and third public IP
+- User Defined Routes (UDR) for the FortiGate VMs
+- Azure Route Server and all configuration on the FortiGate to get started
 
 ![active/passive design](images/fgt-multihub-rs.png)
 
@@ -26,17 +26,17 @@ This ARM template can also be used to extend or customized based on your require
 
 The FortiGate solution can be deployed using the Azure Portal or Azure CLI. There are 4 variables needed to complete kickstart the deployment. The deploy.sh script will ask them automatically. When you deploy the ARM template the Azure Portal will request the variables as a requirement.
 
-  - PREFIX : This prefix will be added to each of the resources created by the templates for easy of use, manageability and visibility.
-  - LOCATION : This is the Azure region where the deployment will be deployed
-  - USERNAME : The username used to login to the FortiGate GUI and SSH management UI.
-  - PASSWORD : The password used for the FortiGate GUI and SSH management UI.
+- PREFIX : This prefix will be added to each of the resources created by the templates for easy of use, manageability and visibility.
+- LOCATION : This is the Azure region where the deployment will be deployed
+- USERNAME : The username used to login to the FortiGate GUI and SSH management UI.
+- PASSWORD : The password used for the FortiGate GUI and SSH management UI.
 
 ### Azure Portal
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Ffortinet%2Fazure-templates%2Fmain%2FFortiGate%2FAzureRouteServer%2FMultiHub%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAartsenGroup%2Ffortinet-azure-templates%2Fmain%2FFortiGate%2FAzureRouteServer%2FMultiHub%2Fazuredeploy.json" target="_blank">
   <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true"/>
 </a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Ffortinet%2Fazure-templates$2Fmain%2FFortiGate%2FAzureRouteServer%2FActive-Passive%2Fazuredeploy.json" target="_blank">
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAartsenGroup%2Ffortinet-azure-templates%2Fmain%2FFortiGate%2FAzureRouteServer%2FMultiHub%2Fazuredeploy.json" target="_blank">
   <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true"/>
 </a>
 
@@ -69,9 +69,9 @@ The ARM template deploy different resource and it is required to have the access
   - It needs to contain characters from at least 3 of the following groups: uppercase characters, lowercase characters, numbers, and special characters excluding '\' or '-'
 - The terms for the FortiGate PAYG or BYOL image in the Azure Marketplace needs to be accepted once before usage. This is done automatically during deployment via the Azure Portal. For the Azure CLI the commands below need to be run before the first deployment in a subscription.
   - BYOL
-`az vm image terms accept --publisher fortinet --offer fortinet_fortigate-vm_v5 --plan fortinet_fg-vm`
+    `az vm image terms accept --publisher fortinet --offer fortinet_fortigate-vm_v5 --plan fortinet_fg-vm`
   - PAYG
-`az vm image terms accept --publisher fortinet --offer fortinet_fortigate-vm_v5 --plan fortinet_fg-vm_payg_2022`
+    `az vm image terms accept --publisher fortinet --offer fortinet_fortigate-vm_v5 --plan fortinet_fg-vm_payg_2022`
 
 ## Fabric Connector
 
@@ -89,9 +89,11 @@ The FortiGate VMs need a specific configuration to operate in your environment. 
 - East-West connections
 
 ## Support
+
 Fortinet-provided scripts in this and other GitHub projects do not fall under the regular Fortinet technical support scope and are not supported by FortiCare Support Services.
 For direct issues, please refer to the [Issues](https://github.com/fortinet/azure-templates/issues) tab of this GitHub project.
 For other questions related to this project, contact [github@fortinet.com](mailto:github@fortinet.com).
 
 ## License
+
 [License](/../../LICENSE) © Fortinet Technologies. All rights reserved.
